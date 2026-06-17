@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mister-content-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "C:\\Users\\Gustavo\\OneDrive\\Desktop\\Nueva carpeta\\mister-content",
+      "port": 3000
+    }
+  ]
+}
