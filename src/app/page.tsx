@@ -6,6 +6,7 @@ import ValueProp from "@/components/ValueProp";
 import Stats from "@/components/Stats";
 import Services from "@/components/Services";
 import CaseStudies from "@/components/CaseStudies";
+import Clients from "@/components/Clients";
 import Pricing from "@/components/Pricing";
 import Process from "@/components/Process";
 import Contact from "@/components/Contact";
@@ -22,6 +23,7 @@ export default function Home() {
       <Stats />
       <Services />
       <CaseStudies />
+      <Clients />
       <Pricing />
       <Process />
       <Contact />

@@ -9,6 +9,7 @@ import { waLink } from "@/lib/site";
 const links = [
   { href: "/#servicios", label: "Servicios" },
   { href: "/#casos", label: "Casos de éxito" },
+  { href: "/#clientes", label: "Clientes" },
   { href: "/#precios", label: "Precios" },
   { href: "/#proceso", label: "Proceso" },
   { href: "/nosotros", label: "Nosotros" },
