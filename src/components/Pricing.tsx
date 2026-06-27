@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, X } from "lucide-react";
+import { Check, X, Calculator } from "lucide-react";
 import { AuroraShaderBackground } from "./ui/aurora-shader";
 import { LazyVisible } from "./ui/LazyVisible";
 import { waLink } from "@/lib/site";
@@ -188,17 +188,24 @@ export default function Pricing() {
         {/* Cotización personalizada */}
         <div className="mt-12 flex flex-col items-center gap-4 text-center">
           <p className="text-white/90">
-            ¿Tu negocio necesita algo distinto? Te armamos un plan a tu medida.
+            ¿Tu negocio necesita algo distinto? Calcula tu plan a la medida en segundos.
           </p>
           <a
-            href={waLink(
-              "Hola Mister Content, quiero una cotización personalizada para mi negocio."
-            )}
+            href="https://mrcontentoficial-cloud.github.io/CALCULADORA-CLIENTES/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full border border-accent/50 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-accent/10 hover:shadow-[0_0_30px_rgba(155,127,212,0.35)]"
+            className="cta-pulse animate-[gradient-pan_5s_ease_infinite] group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-10 py-5 text-lg font-bold text-black"
+            style={{
+              background:
+                "linear-gradient(110deg, #b89dee 0%, #9b7fd4 35%, #c77dff 65%, #9b7fd4 100%)",
+            }}
           >
-            Cotización personalizada
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.6),transparent)] transition-transform duration-700 group-hover:translate-x-full"
+            />
+            <Calculator className="relative size-5" />
+            <span className="relative">Calcula tu cotización</span>
           </a>
           <p className="mt-2 text-xs text-white/90">
             Precios en pesos mexicanos más IVA. La inversión publicitaria en Meta
