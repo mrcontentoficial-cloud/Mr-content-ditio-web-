@@ -11,6 +11,7 @@ export type CaseStudy = {
   mapEmbed?: string;
   address?: string;
   mapUrl?: string;
+  socials?: { type: "facebook" | "instagram" | "tiktok"; url: string }[];
 };
 
 export const cases: CaseStudy[] = [
@@ -43,19 +44,28 @@ export const cases: CaseStudy[] = [
     name: "DML Médica",
     logo: "/dml-medica.png",
     circleBg: "#ffffff",
-    category: "Branding y redes sociales",
+    category: "Creación de contenido y comunidad",
     intro:
-      "DML Médica tenía presencia, pero sin rumbo. Le dimos una estrategia de marca y contenido que convirtió sus redes en una comunidad real y constante.",
+      "A DML Médica le creamos contenido y le dimos presencia entre la comunidad de rescate, paramédicos y hospitalaria, conectando su marca con la gente correcta.",
     work: [
-      "Posicionamiento y línea gráfica de marca.",
-      "Estrategia de contenido mensual para Instagram y Facebook.",
+      "Creación de contenido para la empresa.",
+      "Estrategia para conectar con la comunidad de rescate y paramédica.",
+      "Presencia constante en Facebook, Instagram y TikTok.",
       "Diseño de publicaciones, stories y reels.",
-      "Gestión de comunidad para crecer con seguidores reales.",
     ],
     results: [
-      { value: "+10K", label: "seguidores alcanzados" },
+      { value: "+10K", label: "comunidad alcanzada" },
       { value: "100%", label: "presencia constante" },
     ],
+    socials: [
+      { type: "facebook", url: "https://www.facebook.com/share/18g2QTgkJx/?mibextid=wwXIfr" },
+      { type: "instagram", url: "https://www.instagram.com/dmlmedica?igsh=MW55bmV0d2U1NDB2dQ==" },
+      { type: "tiktok", url: "https://www.tiktok.com/@dml_medica?_r=1&_t=ZS-97ZGM6KyAaK" },
+    ],
+    mapEmbed:
+      "https://www.google.com/maps?q=21.1069811,-101.6221212&z=16&output=embed",
+    address: "Distribuidora Médica de León, León, Gto.",
+    mapUrl: "https://maps.app.goo.gl/z5fk49wuBiETfQHS7",
   },
   {
     slug: "clinica-lasser",

@@ -10,6 +10,32 @@ import ShimmerButton from "@/components/ui/ShimmerButton";
 import { cases, getCase } from "@/lib/cases";
 import { waLink } from "@/lib/site";
 
+function SocialIcon({ type }: { type: "facebook" | "instagram" | "tiktok" }) {
+  if (type === "instagram") {
+    return (
+      <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+        <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
+        <circle cx="12" cy="12" r="4.5" />
+        <circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" stroke="none" />
+      </svg>
+    );
+  }
+  if (type === "facebook") {
+    return (
+      <svg viewBox="0 0 24 24" className="size-6" fill="currentColor" aria-hidden>
+        <path d="M13.5 21v-7h2.4l.45-3H13.5V9.1c0-.87.28-1.6 1.65-1.6h1.35V4.85c-.3-.04-1.3-.13-2.46-.13-2.43 0-4.04 1.48-4.04 4.16V11H7.5v3H10v7h3.5Z" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 24 24" className="size-6" fill="currentColor" aria-hidden>
+      <path d="M16.6 3c.36 2 1.62 3.36 3.9 3.5v2.78c-1.43.1-2.74-.32-3.9-1.1v6.32c0 4.06-3.5 6.2-6.55 5.18-2.32-.78-3.73-3.03-3.42-5.42.33-2.56 2.52-4.42 5.16-4.42.27 0 .54.02.8.07v2.86a2.55 2.55 0 0 0-2.96 1.4 2.5 2.5 0 0 0 1.18 3.27c1.7.83 3.59-.4 3.59-2.28V3h2.2Z" />
+    </svg>
+  );
+}
+
+const socialLabel = { facebook: "Facebook", instagram: "Instagram", tiktok: "TikTok" } as const;
+
 export function generateStaticParams() {
   return cases.map((c) => ({ slug: c.slug }));
 }
@@ -152,6 +178,34 @@ export default async function CasePage({
                     className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   />
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Redes / contenido */}
+      {c.socials && c.socials.length > 0 && (
+        <section className="border-t border-white/10 bg-night">
+          <div className="mx-auto max-w-4xl px-5 py-16 text-center md:px-8 md:py-20">
+            <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
+              Mira su contenido
+            </h2>
+            <p className="mt-3 text-white/90">
+              Síguelos y mira lo que construimos juntos.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              {c.socials.map((s) => (
+                <a
+                  key={s.type}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+                >
+                  <SocialIcon type={s.type} />
+                  {socialLabel[s.type]}
+                </a>
               ))}
             </div>
           </div>
