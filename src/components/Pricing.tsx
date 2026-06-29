@@ -185,7 +185,7 @@ export default function Pricing() {
           <MoveHorizontal className="size-4 animate-pulse" />
         </p>
 
-        <div className="-mx-5 flex snap-x snap-mandatory touch-pan-x gap-5 overflow-x-auto overscroll-x-contain px-5 pb-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-3 md:touch-auto md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+        <div className="-mx-5 flex snap-x snap-proximity gap-5 overflow-x-auto overscroll-x-contain px-5 pb-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
           {plans.map((plan, i) => (
             <div
               key={plan.tier}
@@ -203,8 +203,6 @@ export default function Pricing() {
           </p>
           <a
             href="https://mrcontentoficial-cloud.github.io/CALCULADORA-CLIENTES/"
-            target="_blank"
-            rel="noopener noreferrer"
             className="cta-pulse animate-[gradient-pan_5s_ease_infinite] group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-10 py-5 text-lg font-bold text-black"
             style={{
               background:
