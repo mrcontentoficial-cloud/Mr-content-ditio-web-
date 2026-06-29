@@ -85,6 +85,25 @@ export const cases: CaseStudy[] = [
       { value: "100%", label: "enfocado en pacientes" },
     ],
   },
+  {
+    slug: "antojo-crunch",
+    name: "Antojo & Crunch",
+    logo: "/antojo-crunch-icono.jpg",
+    circleBg: "#ffffff",
+    category: "Identidad de marca",
+    intro:
+      "Antojo & Crunch vende botanas y chilaquiles sin tienda física, así que su marca es su mejor escaparate. Le creamos un logo con personalidad y una tipografía propia para que se antoje desde el primer vistazo.",
+    work: [
+      "Diseño de logo con carácter y mucho sabor.",
+      "Tipografía propia para la marca.",
+      "Línea gráfica lista para redes y empaques.",
+    ],
+    results: [
+      { value: "100%", label: "identidad desde cero" },
+      { value: "Logo", label: "y tipografía propia" },
+    ],
+    gallery: ["/antojo-crunch-logo.jpg", "/antojo-crunch-texto.jpg"],
+  },
 ];
 
 export function getCase(slug: string) {
