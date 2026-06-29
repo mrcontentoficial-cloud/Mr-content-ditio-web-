@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, X, Calculator } from "lucide-react";
+import { Check, X, Calculator, MoveHorizontal } from "lucide-react";
 import { AuroraShaderBackground } from "./ui/aurora-shader";
 import { LazyVisible } from "./ui/LazyVisible";
 import { waLink } from "@/lib/site";
@@ -179,7 +179,13 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+        {/* Leyenda solo en móvil */}
+        <p className="mb-5 flex items-center justify-center gap-2 text-sm font-semibold text-accent md:hidden">
+          Desliza para ver los planes
+          <MoveHorizontal className="size-4 animate-pulse" />
+        </p>
+
+        <div className="-mx-5 flex snap-x snap-proximity gap-5 overflow-x-auto overscroll-x-contain px-5 pb-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
           {plans.map((plan, i) => (
             <div
               key={plan.tier}
