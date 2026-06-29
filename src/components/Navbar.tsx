@@ -11,6 +11,7 @@ const links = [
   { href: "/#casos", label: "Casos de éxito" },
   { href: "/#precios", label: "Precios" },
   { href: "/#proceso", label: "Proceso" },
+  { href: "/#faq", label: "FAQ" },
   { href: "/nosotros", label: "Nosotros" },
 ];
 

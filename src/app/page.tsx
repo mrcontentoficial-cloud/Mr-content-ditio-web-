@@ -8,6 +8,7 @@ import Services from "@/components/Services";
 import CaseStudies from "@/components/CaseStudies";
 import Pricing from "@/components/Pricing";
 import Process from "@/components/Process";
+import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 
@@ -24,6 +25,7 @@ export default function Home() {
       <CaseStudies />
       <Pricing />
       <Process />
+      <Faq />
       <Contact />
       <WhatsAppFloat />
     </main>
