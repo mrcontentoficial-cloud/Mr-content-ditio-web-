@@ -202,7 +202,7 @@ export default function Pricing() {
             ¿Tu negocio necesita algo distinto? Calcula tu plan a la medida en segundos.
           </p>
           <a
-            href="https://mrcontentoficial-cloud.github.io/CALCULADORA-CLIENTES/"
+            href="/cotizador"
             className="cta-pulse animate-[gradient-pan_5s_ease_infinite] group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-10 py-5 text-lg font-bold text-black"
             style={{
               background:

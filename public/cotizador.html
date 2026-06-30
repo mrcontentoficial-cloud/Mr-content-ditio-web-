@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Arma tu plan · Mr Content</title>
+<link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#000000;--night-soft:#08070c;--night-card:#0e0c14;
+    --accent:#9b7fd4;--accent-bright:#b89dee;--accent-deep:#6f4fb3;--accent-magenta:#c77dff;
+    --line:#1c1a24;--muted:#8b8794;--ok:#3ddc97;--warn:#ff5c7a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{touch-action:manipulation}
+  body{font-family:'Poppins',sans-serif;background:var(--night);color:#fff;min-height:100vh;padding:30px 18px 70px;-webkit-text-size-adjust:100%;
+    background-image:radial-gradient(900px 500px at 80% -10%, rgba(155,127,212,.18), transparent 60%),radial-gradient(700px 400px at -10% 20%, rgba(199,125,255,.10), transparent 55%);}
+  .wrap{max-width:1060px;margin:0 auto}
+  header{text-align:center;margin-bottom:30px}
+  header img{width:96px;height:96px;border-radius:50%;object-fit:cover;margin-bottom:14px;display:inline-block;box-shadow:0 12px 30px -10px rgba(0,0,0,.6)}
+  .kicker{font-family:'Bebas Neue';letter-spacing:.35em;color:var(--accent-bright);font-size:13px;margin-bottom:6px}
+  h1{font-family:'Coolvetica','Bebas Neue',sans-serif;font-size:clamp(34px,6vw,58px);line-height:.95;font-weight:400}
+  h1 .grad{background:linear-gradient(100deg,#fff,var(--accent-bright) 45%,var(--accent-magenta));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .sub{color:var(--muted);margin-top:12px;font-size:15px;max-width:580px;margin-inline:auto}
+  .layout{display:grid;grid-template-columns:1.7fr 1fr;gap:24px;align-items:start;margin-top:30px}
+  @media(max-width:880px){.layout{grid-template-columns:1fr}}
+  .acc{background:var(--night-card);border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
+  .acc.open{border-color:var(--accent-deep)}
+  .acc-head{width:100%;background:transparent;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 18px;text-align:left;font-family:'Poppins'}
+  .acc-head:hover{background:rgba(155,127,212,.06)}
+  .acc-title{font-family:'Bebas Neue';letter-spacing:.05em;font-size:21px;color:#fff}
+  .acc-hint{color:var(--muted);font-size:11.5px;margin-top:2px}
+  .acc-right{display:flex;align-items:center;gap:11px;flex:none}
+  .acc-count{font-size:10px;font-weight:700;letter-spacing:.04em;background:var(--accent);color:#000;border-radius:999px;padding:3px 9px;display:none}
+  .acc-count.show{display:inline-block}
+  .chev{font-size:15px;color:var(--accent-bright);transition:transform .2s}
+  .acc.open .chev{transform:rotate(180deg)}
+  .acc-body{display:none;padding:0 16px 16px}
+  .acc.open .acc-body{display:block}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.opts{grid-template-columns:1fr}}
+  .opt{background:var(--night-card);border:1.5px solid var(--line);border-radius:15px;padding:15px 16px;cursor:pointer;transition:.15s;position:relative;display:flex;flex-direction:column;gap:5px}
+  .opt:hover{border-color:var(--accent-deep);transform:translateY(-2px)}
+  .opt.sel{border-color:var(--accent);box-shadow:0 0 0 3px rgba(155,127,212,.22);background:linear-gradient(160deg,rgba(155,127,212,.10),transparent)}
+  .opt .check{position:absolute;top:13px;right:13px;width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;transition:.15s}
+  .opt.sel .check{background:var(--accent);border-color:var(--accent);color:#000}
+  .opt .on{font-weight:600;font-size:14.5px;padding-right:28px}
+  .opt .od{font-size:11.5px;color:var(--muted);line-height:1.4}
+  .opt .ot{font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:2px 7px;border-radius:5px;align-self:flex-start;margin-top:3px}
+  .opt .ot.mensual{background:rgba(155,127,212,.16);color:var(--accent-bright)}
+  .opt .ot.unica{background:rgba(199,125,255,.14);color:var(--accent-magenta)}
+  .netpick{margin-top:12px;background:#070610;border:1px solid var(--line);border-radius:13px;padding:14px}
+  .netpick .npt{font-size:12.5px;font-weight:600;color:var(--accent-bright);margin-bottom:10px}
+  .netrow{margin-bottom:9px}
+  .netbtn{display:flex;align-items:center;gap:9px;width:100%;background:var(--night-card);border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;color:#fff;cursor:pointer;font-family:'Poppins';font-size:13px;text-align:left}
+  .netbtn .nck{width:18px;height:18px;border-radius:5px;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent}
+  .netrow.on .netbtn{border-color:var(--accent)}
+  .netrow.on .nck{background:var(--accent);border-color:var(--accent);color:#000}
+  .netlink{display:none;margin-top:8px;position:relative}
+  .netrow.on .netlink{display:block}
+  .netlink::before{content:'🔗';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.85;pointer-events:none}
+  .netpick .netlink input{width:100%;font-size:12.5px;padding:10px 12px 10px 34px;background:#0e0c14;border:1px solid var(--accent-deep);border-radius:10px;color:#fff}
+  .netpick .netlink input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(155,127,212,.18)}
+  /* RESUMEN / FORM */
+  .summary{position:sticky;top:20px}
+  .card{background:var(--night-card);border:1px solid var(--line);border-radius:20px;padding:22px}
+  .tot-box{border-radius:15px;padding:15px 17px;color:#fff;margin-bottom:11px}
+  .tot-box.once{background:linear-gradient(120deg,#6f4fb3,#9b6fd6)}
+  .tot-box.month{background:linear-gradient(120deg,#241a3d,#5a3fa0)}
+  .tot-box .tt{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;opacity:.9}
+  .tot-box .am{font-size:27px;font-weight:700;margin:3px 0 2px}
+  .tot-box .am .mes{font-size:13px;opacity:.8}
+  .tot-box .od2{font-size:10px;opacity:.9;line-height:1.4}
+  .empty-note{color:var(--muted);font-size:13px;font-style:italic;text-align:center;padding:16px 0}
+  .selected-list{font-size:11.5px;color:#cfcad9;display:grid;gap:4px;margin-bottom:12px}
+  .selected-list li{list-style:none}
+  .selected-list li::before{content:'✓';color:var(--accent-bright);margin-right:7px;font-weight:700}
+  .policy{background:#070610;border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:11px;color:var(--muted);margin:6px 0 14px;line-height:1.5}
+  .policy b{color:var(--accent-bright)}
+  label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:12px 0 6px}
+  label .req{color:var(--accent-magenta)}
+  input[type=text],input[type=email],input[type=tel],input[type=url],textarea{width:100%;background:#070610;border:1px solid var(--line);color:#fff;border-radius:11px;padding:11px 13px;font-family:'Poppins';font-size:14px}
+  input::placeholder,textarea::placeholder{color:#6e6a79}
+  input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(155,127,212,.18)}
+  textarea{min-height:84px;resize:vertical}
+  .btn{display:block;width:100%;border:none;border-radius:12px;padding:14px;font-family:'Bebas Neue';letter-spacing:.08em;font-size:18px;cursor:pointer;transition:.15s;margin-top:16px}
+  .btn.send{background:linear-gradient(100deg,var(--accent-deep),var(--accent-magenta));color:#fff}
+  .btn.send:hover{filter:brightness(1.12)}
+  .btn:disabled{opacity:.6;cursor:default}
+  .err-msg{color:var(--warn);font-size:12.5px;margin-top:10px;display:none}
+  .err-msg.show{display:block}
+  .success{display:none;text-align:center;padding:36px 22px}
+  .success.show{display:block}
+  .success .ico{font-size:52px}
+  .success h3{font-family:'Coolvetica','Bebas Neue';font-size:32px;font-weight:400;margin:10px 0;background:linear-gradient(100deg,#fff,var(--accent-bright),var(--accent-magenta));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .success p{color:var(--muted);font-size:14px;max-width:420px;margin:0 auto 8px}
+  footer{text-align:center;color:var(--muted);font-size:11.5px;margin-top:46px}
+</style>
+</head>
+<body>
+<a href="https://mistercontent.studio/#precios"
+   style="position:fixed;top:14px;left:14px;z-index:9999;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:linear-gradient(110deg,#b89dee,#9b7fd4 50%,#c77dff);color:#000;font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;text-decoration:none;box-shadow:0 8px 24px -6px rgba(155,127,212,.6)">
+  &#8592; Volver al sitio
+</a>
+<div class="wrap">
+  <header>
+    <img src="/cotizador-logo.png" alt="Mr Content" onerror="this.style.display='none'">
+    <div class="kicker">MR CONTENT · AGENCIA CREATIVA</div>
+    <h1>Arma <span class="grad">tu plan</span></h1>
+    <p class="sub">Cuéntanos qué necesitas. Elige lo que quieres lograr y te preparamos una propuesta a tu medida.</p>
+  </header>
+
+  <div class="layout">
+    <div id="sections"></div>
+
+    <div class="summary">
+      <div class="card">
+        <div id="totals"><div class="empty-note">Elige lo que necesitas para ver tu propuesta.</div></div>
+        <ul class="selected-list" id="selList"></ul>
+        <div class="policy"><b>Propuesta válida 15 días naturales.</b> Precios sin IVA salvo indicación. Anticipo del 50% para iniciar.</div>
+
+        <div id="formBox">
+          <label>Nombre <span class="req">*</span></label>
+          <input type="text" id="f_nombre" placeholder="Tu nombre">
+          <label>Empresa o negocio <span class="req">*</span></label>
+          <input type="text" id="f_empresa" placeholder="Nombre de tu marca">
+          <label>Teléfono <span class="req">*</span></label>
+          <input type="tel" id="f_tel" placeholder="Tu WhatsApp / teléfono">
+          <label>Correo <span class="req">*</span></label>
+          <input type="email" id="f_correo" placeholder="tucorreo@ejemplo.com">
+          <label>¿Cuál es tu objetivo? <span class="req">*</span></label>
+          <textarea id="f_obj" placeholder="Cuéntanos qué quieres lograr: más ventas, crecer en redes, lanzar tu marca…"></textarea>
+          <button class="btn send" id="sendBtn" onclick="enviar()">Solicitar mi propuesta →</button>
+          <div class="err-msg" id="formErr"></div>
+        </div>
+
+        <div class="success" id="success">
+          <div class="ico">✅</div>
+          <h3>¡Solicitud enviada!</h3>
+          <p>Gracias, <b id="okName">crack</b>. Recibimos lo que necesitas y te contactaremos muy pronto con tu propuesta.</p>
+          <p style="font-size:12px">Mr Content · Agencia Creativa</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>Mr Content · Agencia Creativa — propuesta sin compromiso, válida 15 días naturales.</footer>
+</div>
+
+<script>
+const MAIL='mrcontentoficial@gmail.com';
+// Precios INTERNOS (el cliente NUNCA los ve). Solo se muestra el total final.
+const SECTIONS=[
+  {key:'marca',title:'Identidad de marca',hint:'La base visual de tu negocio.',items:[
+    {id:'identidad',name:'Quiero crear mi identidad de marca',desc:'Logo, paleta, mood board y lineamientos de tu marca.',price:2000,bill:'unica'},
+  ]},
+  {key:'web',title:'Sitio web',hint:'Elige el tipo de sitio que necesitas. Todos incluyen mantenimiento mensual.',items:[
+    {id:'web_landing',name:'Sitio web sencillo',desc:'Una sola página para presentarte y captar clientes. Incluye mantenimiento mensual.',price:8000,bill:'unica',group:'web',maint:2000},
+    {id:'web_premium',name:'Sitio web profesional',desc:'Varias páginas, diseño premium y animaciones. Incluye mantenimiento mensual.',price:25000,bill:'unica',group:'web',maint:3500},
+    {id:'web_tienda',name:'Tienda en línea (e-commerce)',desc:'Catálogo, carrito y pagos en línea para vender. Incluye mantenimiento mensual.',price:35000,bill:'unica',group:'web',maint:3500},
+  ]},
+  {key:'contenido',title:'Contenido para redes',hint:'Quiero que me hagan el contenido. Elige el ritmo.',items:[
+    {id:'cont_basico',name:'Contenido Básico',desc:'8 publicaciones y 2 reels al mes.',price:3000,bill:'mensual',group:'contenido'},
+    {id:'cont_pro',name:'Contenido Pro',desc:'12 publicaciones, 4 reels y carruseles al mes.',price:6200,bill:'mensual',group:'contenido'},
+    {id:'cont_premium',name:'Contenido Premium',desc:'Más piezas + sesión de foto/video al mes.',price:9600,bill:'mensual',group:'contenido'},
+  ]},
+  {key:'redes',title:'Gestión de redes',hint:'Que alguien lleve tus redes por ti.',items:[
+    {id:'gestion',name:'Quiero que gestionen mis redes',desc:'Respondemos comunidad, publicamos y te damos reportes.',price:1000,bill:'mensual'},
+    {id:'estrategia',name:'Estrategia y dirección creativa',desc:'Plan de contenidos y dirección de marca cada mes.',price:1500,bill:'mensual'},
+  ]},
+  {key:'auto',title:'Automatizaciones',hint:'Que la tecnología trabaje por ti.',items:[
+    {id:'whatsapp',name:'Automatización por WhatsApp',desc:'Un chatbot que atiende a tus clientes 24/7.',price:3500,bill:'mensual'},
+  ]},
+];
+const ALL={};SECTIONS.forEach(s=>s.items.forEach(i=>ALL[i.id]=i));
+const NET_PRICE=1000;
+const NETWORKS=[{k:'instagram',n:'Instagram'},{k:'facebook',n:'Facebook'},{k:'tiktok',n:'TikTok'},{k:'x',n:'X (Twitter)'},{k:'linkedin',n:'LinkedIn'},{k:'youtube',n:'YouTube'}];
+const NETNAME=k=>(NETWORKS.find(x=>x.k===k)||{}).n||k;
+const netSel=new Set();const netLinks={};
+const sel=new Set();
+const $=s=>document.querySelector(s);
+const money=n=>'$'+Math.round(n).toLocaleString('es-MX');
+
+function render(){
+  const c=$('#sections');c.innerHTML='';
+  SECTIONS.forEach(s=>{
+    const acc=document.createElement('div');acc.className='acc';acc.dataset.sec=s.key;
+    acc.innerHTML=`<button class="acc-head" type="button">
+        <div><div class="acc-title">${s.title}</div><div class="acc-hint">${s.hint}</div></div>
+        <div class="acc-right"><span class="acc-count" data-cnt="${s.key}"></span><span class="chev">▾</span></div>
+      </button>
+      <div class="acc-body"><div class="opts"></div></div>`;
+    const opts=acc.querySelector('.opts');
+    s.items.forEach(it=>{
+      const d=document.createElement('div');d.className='opt'+(sel.has(it.id)?' sel':'');d.dataset.id=it.id;
+      d.innerHTML=`<div class="check">✓</div><div class="on">${it.name}</div><div class="od">${it.desc}</div>
+        <span class="ot ${it.bill}">${it.bill==='unica'?'Pago único':'Mensual'}</span>`;
+      d.onclick=()=>toggle(it,d);
+      opts.appendChild(d);
+    });
+    if(s.key==='redes'){
+      const np=document.createElement('div');np.className='netpick';np.id='netpick';np.style.display='none';
+      np.innerHTML='<div class="npt">¿Qué redes quieres que llevemos? Marca cada una y pon su enlace.</div>'+
+        NETWORKS.map(net=>`<div class="netrow" data-net="${net.k}">
+          <button type="button" class="netbtn"><span class="nck">✓</span> ${net.n}</button>
+          <div class="netlink"><input type="text" data-netlink="${net.k}" placeholder="Déjanos tu enlace o tu usuario de ${net.n}"></div>
+        </div>`).join('');
+      acc.querySelector('.acc-body').appendChild(np);
+      np.querySelectorAll('.netrow').forEach(row=>{
+        const k=row.dataset.net;
+        row.querySelector('.netbtn').onclick=()=>toggleNet(k,row);
+        row.querySelector('[data-netlink]').addEventListener('input',e=>{netLinks[k]=e.target.value.trim();});
+      });
+    }
+    acc.querySelector('.acc-head').onclick=()=>acc.classList.toggle('open');
+    c.appendChild(acc);
+  });
+  updateCounts();
+}
+function toggleNet(k,row){
+  if(netSel.has(k)){netSel.delete(k);row.classList.remove('on');}
+  else{netSel.add(k);row.classList.add('on');}
+  updateCounts();calc();
+}
+function refreshNetPicker(){
+  const np=document.getElementById('netpick');if(!np)return;
+  np.style.display=sel.has('gestion')?'block':'none';
+  if(!sel.has('gestion')){netSel.clear();Object.keys(netLinks).forEach(k=>delete netLinks[k]);
+    np.querySelectorAll('.netrow').forEach(r=>r.classList.remove('on'));
+    np.querySelectorAll('[data-netlink]').forEach(i=>i.value='');}
+}
+function toggle(it,el){
+  if(sel.has(it.id)){sel.delete(it.id);el.classList.remove('sel');}
+  else{
+    if(it.group){SECTIONS.forEach(s=>s.items.forEach(i=>{if(i.group===it.group){sel.delete(i.id);const o=document.querySelector('[data-id="'+i.id+'"]');if(o)o.classList.remove('sel');}}));}
+    sel.add(it.id);el.classList.add('sel');
+  }
+  refreshNetPicker();updateCounts();calc();
+}
+function updateCounts(){
+  SECTIONS.forEach(s=>{
+    const n=s.items.filter(i=>sel.has(i.id)).length;
+    const b=document.querySelector('[data-cnt="'+s.key+'"]');
+    if(b){b.textContent=n?(n+' elegido'+(n>1?'s':'')):'';b.classList.toggle('show',n>0);}
+  });
+}
+function gather(){
+  let once=0,month=0;const names=[];
+  sel.forEach(id=>{const it=ALL[id];if(!it)return;
+    if(id==='gestion'){
+      const nn=netSel.size;
+      if(nn>0){month+=NET_PRICE*nn;const reds=[...netSel].map(NETNAME).join(', ');names.push({name:`Gestión de redes — ${nn} red${nn>1?'es':''} (${reds})`,bill:'mensual'});}
+      return;
+    }
+    if(it.bill==='unica')once+=it.price;else month+=it.price;
+    names.push({name:it.name,bill:it.bill});
+    if(it.maint){month+=it.maint;names.push({name:'Mantenimiento del sitio web (incluido)',bill:'mensual'});}
+  });
+  return{once,month,names,total:once+month};
+}
+function calc(){
+  const g=gather();const tt=$('#totals');const sl=$('#selList');
+  sl.innerHTML=g.names.map(n=>`<li>${n.name} <span style="color:var(--muted)">(${n.bill==='unica'?'único':'mensual'})</span></li>`).join('');
+  if(g.total<=0){tt.innerHTML='<div class="empty-note">Elige lo que necesitas para ver tu propuesta.</div>';return;}
+  let html='';
+  if(g.once>0&&g.month>0){
+    html=`<div class="tot-box once"><div class="tt">Para arrancar (hoy)</div><div class="am">${money(g.once+g.month)}</div>
+      <div class="od2">Incluye tu pago inicial y la primera mensualidad.</div></div>
+      <div class="tot-box month"><div class="tt">Después, cada mes</div><div class="am">${money(g.month)}<span class="mes"> /mes</span></div></div>`;
+  }else if(g.once>0){
+    html=`<div class="tot-box once"><div class="tt">Inversión</div><div class="am">${money(g.once)}</div><div class="od2">Pago único, una sola vez.</div></div>`;
+  }else{
+    html=`<div class="tot-box month"><div class="tt">Tu plan mensual</div><div class="am">${money(g.month)}<span class="mes"> /mes</span></div></div>`;
+  }
+  tt.innerHTML=html;
+}
+
+function fechaMas(d){const x=new Date();x.setDate(x.getDate()+d);const p=n=>String(n).padStart(2,'0');return `${p(x.getDate())}/${p(x.getMonth()+1)}/${x.getFullYear()}`;}
+
+function enviar(){
+  const err=$('#formErr');
+  const nombre=$('#f_nombre').value.trim(),empresa=$('#f_empresa').value.trim(),tel=$('#f_tel').value.trim(),correo=$('#f_correo').value.trim(),obj=$('#f_obj').value.trim();
+  const g=gather();
+  const fail=m=>{err.textContent=m;err.classList.add('show');};
+  if(g.total<=0){fail('Elige al menos una opción antes de enviar.');return;}
+  if(!nombre||!empresa||!tel||!correo||!obj){fail('Completa todos los campos del formulario.');return;}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)){fail('Revisa tu correo, parece incompleto.');return;}
+  if((tel.replace(/\D/g,'')).length<7){fail('Revisa tu teléfono, parece incompleto.');return;}
+  if(sel.has('gestion')){
+    if(netSel.size===0){fail('Elegiste gestión de redes: marca al menos una red social.');return;}
+    for(const k of netSel){if(!netLinks[k]){fail('Pon el enlace de cada red que quieres que llevemos ('+NETNAME(k)+').');return;}}
+  }
+  err.classList.remove('show');
+  const lista=g.names.map(n=>`• ${n.name} (${n.bill==='unica'?'pago único':'mensual'})`).join('\n');
+  const redesTxt=sel.has('gestion')&&netSel.size?('\nRedes a gestionar:\n'+[...netSel].map(k=>'  - '+NETNAME(k)+': '+(netLinks[k]||'—')).join('\n')):'';
+  const payload={
+    _subject:'🟣 Nueva solicitud — '+nombre+(empresa?(' / '+empresa):''),
+    _template:'table',_captcha:'false',
+    Nombre:nombre,Empresa:empresa,Telefono:tel,Correo:correo,
+    'Lo que necesita':lista,
+    'Redes a gestionar':sel.has('gestion')&&netSel.size?[...netSel].map(k=>NETNAME(k)+': '+(netLinks[k]||'—')).join(' | '):'—',
+    'Pago unico':money(g.once),'Pago mensual':money(g.month),'Para arrancar (unico + 1a mensualidad)':money(g.total),
+    'Objetivo del cliente':obj,
+    'Fecha':fechaMas(0),'Valido hasta (15 dias naturales)':fechaMas(15)
+  };
+  const btn=$('#sendBtn');btn.disabled=true;btn.textContent='Enviando…';
+  fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
+    .then(r=>r.json()).then(()=>showOk(nombre))
+    .catch(()=>{
+      const body=encodeURIComponent(`Nombre: ${nombre}\nEmpresa: ${empresa}\nTeléfono: ${tel}\nCorreo: ${correo}\n\nLo que necesita:\n${lista}${redesTxt}\n\nPago único: ${money(g.once)}\nMensual: ${money(g.month)}\nPara arrancar: ${money(g.total)}\n\nObjetivo:\n${obj}`);
+      window.location.href=`mailto:${MAIL}?subject=${encodeURIComponent('Solicitud de propuesta — '+nombre)}&body=${body}`;
+      showOk(nombre);
+    });
+}
+function showOk(n){$('#okName').textContent=n;$('#formBox').style.display='none';$('#success').classList.add('show');}
+
+render();calc();
+</script>
+</body>
+</html>
