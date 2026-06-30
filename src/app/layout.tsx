@@ -45,14 +45,14 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     locale: "es_MX",
     type: "website",
-    images: [{ url: "/logo.png", width: 512, height: 512, alt: "Mister Content" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Mister Content" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Mister Content. Imaginamos, creamos, transformamos.",
     description:
       "Agencia creativa digital: web, marca, contenido y WhatsApp que convierten visitas en clientes.",
-    images: ["/logo.png"],
+    images: ["/og.png"],
   },
 };
 

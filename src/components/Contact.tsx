@@ -21,18 +21,9 @@ function FacebookIcon() {
   );
 }
 
-function TikTokIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden>
-      <path d="M16.6 3c.36 2 1.62 3.36 3.9 3.5v2.78c-1.43.1-2.74-.32-3.9-1.1v6.32c0 4.06-3.5 6.2-6.55 5.18-2.32-.78-3.73-3.03-3.42-5.42.33-2.56 2.52-4.42 5.16-4.42.27 0 .54.02.8.07v2.86a2.55 2.55 0 0 0-2.96 1.4 2.5 2.5 0 0 0 1.18 3.27c1.7.83 3.59-.4 3.59-2.28V3h2.2Z" />
-    </svg>
-  );
-}
-
 const socials = [
   { Icon: InstagramIcon, label: "Instagram", href: SITE.social.instagram },
   { Icon: FacebookIcon, label: "Facebook", href: SITE.social.facebook },
-  { Icon: TikTokIcon, label: "TikTok", href: SITE.social.tiktok },
 ];
 
 export default function Contact() {
